@@ -2,23 +2,39 @@
 <html>
 
 <head>
+    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
     <script>
-        const reader = new FileReader();
-        const datafile = new File("data.json");
-
         window.onload = ()=>{
-            reader.readAsText(datafile);
-        }
+            const datafile = document.getElementById("datafile");
+            const reader = new FileReader();
 
-        reader.onload = ()=>{
-            let obj = JSON.parse(reader.result);
-            console.log(obj);
+            datafile.addEventListener("change",
+                (e)=>{
+                    reader.readAsText(e.target.files[0]);
+            }
+            );
+
+            reader.onload = (e)=>{
+                let obj = JSON.parse(e.target.result);
+                let plotarea = document.getElementById("plotarea");
+                
+                Plotly.newPlot(plotarea,
+                [{
+                    x:obj.x,
+                    y:obj.y
+                }]
+                );
+            }
         }
     </script>
 </head>
 
 <body>
     sample
+    <input type="file" id="datafile">
+
+    <div id="plotarea"></div>
+
 </body>
 
 </html>
