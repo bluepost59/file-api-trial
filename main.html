@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        const reader = new FileReader();
+        const datafile = new File("data.json");
+
+        window.onload = ()=>{
+            reader.readAsText(datafile);
+        }
+
+        reader.onload = ()=>{
+            let obj = JSON.parse(reader.result);
+            console.log(obj);
+        }
+    </script>
+</head>
+
+<body>
+    sample
+</body>
+
+</html>
