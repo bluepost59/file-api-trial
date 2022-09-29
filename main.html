@@ -21,8 +21,10 @@
                 Plotly.newPlot(plotarea,
                 [{
                     x:obj.x,
-                    y:obj.y
-                }]
+                    y:obj.y,
+                    z:obj.z,
+                    type:"contour"
+                }],
                 );
             }
         }
